@@ -3,14 +3,16 @@ on:
   push:
     branches:
       ["main"]
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
          node-version: "20"
          cache: 'npm'
@@ -19,11 +21,12 @@ jobs:
       - name: Build Module
         run: npm run build
       - name: Upload artifactory
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
            name: production-build
            path: ./dist
       - name: Deploy artifactory
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           path: ./dist
