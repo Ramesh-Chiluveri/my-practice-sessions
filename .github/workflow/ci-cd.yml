@@ -1,0 +1,29 @@
+name: CI-CD-React
+on:
+  push:
+    branches:
+      ["main"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: action/checkout@v3
+      - name: Install Node
+        uses: action/setup-node@v3
+        with:
+         node-version: "21"
+         cache: 'npm'
+      - name: Install Dependencies
+        run: npm Install
+      - name: Build Module
+        run: npm run build
+      - name: Upload artifactory
+        uses: action/upload-artifactory@v3
+        with:
+         - name: production-build
+           path: ./dist
+      - name: Deploy artifactory
+        uses: peaceiris/actions-gh-page@v3
+        with:
+          path: ./dist
