@@ -20,11 +20,6 @@ jobs:
         run: npm install
       - name: Build Module
         run: npm run build
-      - name: Upload artifactory
-        uses: actions/upload-artifact@v4
-        with:
-           name: production-build
-           path: ./dist
       - name: Deploy artifactory
         uses: peaceiris/actions-gh-pages@v4
         with:
