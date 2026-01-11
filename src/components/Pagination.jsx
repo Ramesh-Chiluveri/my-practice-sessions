@@ -21,14 +21,15 @@ const Pagination = () => {
 
     setDisabledPrev(currentPage === 1);
     setDisabledNext(currentPage === maxPages);
- }, [maxPages, currentPage]);
+ }, [maxPages]);
 
  useEffect(() => {
     handlePaginationToggleButtons(currentPage);
-}, [currentPage]);
+}, [handlePaginationToggleButtons, currentPage]);
     return (
     <div>
        {loading && <p>Loading...</p>}
+       {error && <p>Error: {error}</p>}
        {
         data && !loading && <>
             <ul>
