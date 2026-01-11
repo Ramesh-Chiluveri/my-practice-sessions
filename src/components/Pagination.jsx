@@ -17,15 +17,21 @@ const Pagination = () => {
     return data?.slice(startIndex, endIndex);
  }
 
- const handlePaginationToggleButtons = useCallback((currentPage) => {
+//  const handlePaginationToggleButtons = useCallback((currentPage) => {
+
+//     setDisabledPrev(currentPage === 1);
+//     setDisabledNext(currentPage === maxPages);
+//  }, [maxPages]);
+
+  const handlePaginationToggleButtons = (currentPage) => {
 
     setDisabledPrev(currentPage === 1);
     setDisabledNext(currentPage === maxPages);
- }, [maxPages]);
+ };
 
  useEffect(() => {
     handlePaginationToggleButtons(currentPage);
-}, [handlePaginationToggleButtons, currentPage]);
+}, [currentPage]);
     return (
     <div>
        {loading && <p>Loading...</p>}
