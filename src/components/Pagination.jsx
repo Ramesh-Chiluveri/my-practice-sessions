@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import useFetch from '../hooks/useFetch';
 import ListItem from './ListItem';
 const Pagination = () => {
@@ -23,15 +23,15 @@ const Pagination = () => {
 //     setDisabledNext(currentPage === maxPages);
 //  }, [maxPages]);
 
-  const handlePaginationToggleButtons = (currentPage) => {
+ 
 
-    setDisabledPrev(currentPage === 1);
-    setDisabledNext(currentPage === maxPages);
- };
-
- useEffect(() => {
-    handlePaginationToggleButtons(currentPage);
-}, [currentPage]);
+//  useEffect(() => {
+//     handlePaginationToggleButtons(currentPage);
+// }, [handlePaginationToggleButtons, currentPage]);
+    useEffect(() => {
+        setDisabledPrev(currentPage === 1);
+        setDisabledNext(currentPage === maxPages);
+    }, [currentPage, maxPages]);
     return (
     <div>
        {loading && <p>Loading...</p>}
